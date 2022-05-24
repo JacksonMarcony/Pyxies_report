@@ -7,11 +7,11 @@ export class CreateUsers1649180737124 implements MigrationInterface {
         name: "users",
         columns: [
           {
-              name: "id",
-              type: "integer",
-              isPrimary:true,
-              isGenerated:true,
-              generationStrategy:'increment'
+            name: "id",
+            type: "integer",
+            isPrimary: true,
+            isGenerated: true,
+            generationStrategy: "increment",
           },
           {
             name: "name",
@@ -24,15 +24,15 @@ export class CreateUsers1649180737124 implements MigrationInterface {
           },
           {
             name: "registry",
-            type: "varchar"
+            type: "varchar",
           },
           {
             name: "isVerify",
-            type: "boolean"
+            type: "boolean",
           },
           {
             name: "password",
-            type: "varchar"
+            type: "varchar",
           },
           {
             name: "created_at",

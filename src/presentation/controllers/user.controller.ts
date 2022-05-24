@@ -54,9 +54,9 @@ export class UserController {
         {
           subject: userAlreadyExists.email,
         },
-        "3f70b5ad-5907-4fa2-8599-f6fbb73f3063",
+        process.env.JWT_TOKEN,
         {
-          expiresIn: "20s",
+          expiresIn: "30min",
           subject: String(userAlreadyExists.id),
         }
       );
