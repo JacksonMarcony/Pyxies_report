@@ -1,8 +1,8 @@
 import { UserEntity } from "../../domain/entities/user.entity";
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
-import { sign } from "jsonwebtoken";
 import { compare, hash } from "bcrypt";
+import { generateToken } from "../../utils/jwt";
 
 export class UserController {
   async create(request: Request, response: Response) {
@@ -27,7 +27,11 @@ export class UserController {
 
       await repository.save(user);
 
-      return response.json(user);
+      const token = generateToken(user.email, user.id);
+
+      return response
+        .status(201)
+        .json({ message: "User created with successfully", token });
     } catch (error) {
       return response.json({ error: error.message });
     }
@@ -50,15 +54,9 @@ export class UserController {
         throw new Error("User or password incorrect!");
       }
 
-      const token = sign(
-        {
-          subject: userAlreadyExists.email,
-        },
-        process.env.JWT_TOKEN,
-        {
-          expiresIn: "30min",
-          subject: String(userAlreadyExists.id),
-        }
+      const token = generateToken(
+        userAlreadyExists.email,
+        userAlreadyExists.id
       );
 
       return response.json({ token });

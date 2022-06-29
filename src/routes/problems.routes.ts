@@ -8,7 +8,7 @@ const problemController = new ProblemController();
 
 const problemRoutes = Router();
 
-problemRoutes.get("/listen", () => {});
+problemRoutes.get("/listen", problemController.listen);
 problemRoutes.post(
   "/create",
   ensureAuthenticated,
