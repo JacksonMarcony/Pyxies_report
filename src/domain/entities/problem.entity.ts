@@ -4,34 +4,30 @@ import {
   CreateDateColumn,
   BaseEntity,
   PrimaryGeneratedColumn,
-  JoinColumn,
-  ManyToOne,
 } from "typeorm";
-import { UserEntity } from "./user.entity";
 
-@Entity("problems")
-export class ProblemEntity extends BaseEntity {
+@Entity("admDepartment")
+export class AdmDepartmentEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  description: string;
+  name: string;
 
   @Column()
-  file: string;
+  email: string;
 
   @Column()
-  accepted: boolean;
+  registry: string;
+
+  @Column()
+  cpf: string;
 
   @Column()
   department: string;
 
   @Column()
-  user_id: number;
-
-  @ManyToOne(() => UserEntity)
-  @JoinColumn({ name: "user_id" })
-  user: UserEntity;
+  password: string;
 
   @CreateDateColumn()
   created_at: Date;
